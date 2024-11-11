@@ -3,23 +3,23 @@ package com.example.modszert_backend.repository;
 import com.example.modszert_backend.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Integer> {
 
-    List<Product> findAll();
+    //Optional<List<Product>> findAll();
 
-    Product findById(int productId);
+    Optional<Product> findByProductId(int productId);
 
-    Product createOne(Product product);
-
-    Product updateOne(Product product);
-
-    void deleteOne(int productId);
-
-    List<Product> findAllByStatus(Product.Status status);
-
-    List<Product> findByCurrentPriceBetween(int minPrice, int maxPrice);
+    //Optional<Product> createOne(Product product);
+//
+//    Product updateOne(Product product);
+//
+//    void deleteOne(int productId);
+//
+//    List<Product> findAllByStatus(Product.Status status);
+//
+//    List<Product> findByCurrentBidBetween(int minPrice, int maxPrice);
 
 }

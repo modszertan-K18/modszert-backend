@@ -4,13 +4,11 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Data
+@Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Product {
     @Id
     @GeneratedValue
-    private Integer productId;;
+    private Integer productId;
 
     @Column(nullable = false)
     private String productName;
