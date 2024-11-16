@@ -1,7 +1,6 @@
 package com.example.modszert_backend.service;
 
 import com.example.modszert_backend.config.JwtService;
-import com.example.modszert_backend.controller.AuthenticationResponse;
 import com.example.modszert_backend.dto.LoginDto;
 import com.example.modszert_backend.dto.RegisterDto;
 import com.example.modszert_backend.entity.Role;
@@ -22,7 +21,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterDto registerDto) {
+    public String register(RegisterDto registerDto) {
         var user = User.builder()
                 .username(registerDto.getUsername())
                 .password(passwordEncoder.encode(registerDto.getPassword()))
@@ -30,14 +29,10 @@ public class AuthService {
                 .build();
 
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse
-                .builder()
-                .token(jwtToken)
-                .build();
+        return jwtService.generateToken(user);
     }
 
-    public AuthenticationResponse login(LoginDto loginDto) {
+    public String login(LoginDto loginDto) {
         // check if the username and password are correct
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword())
@@ -45,10 +40,6 @@ public class AuthService {
 
         var user = userRepository.findByUsername(loginDto.getUsername()).orElseThrow();
 
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse
-                .builder()
-                .token(jwtToken)
-                .build();
+        return jwtService.generateToken(user);
     }
 }
