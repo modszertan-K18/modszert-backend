@@ -1,6 +1,7 @@
 package com.example.modszert_backend.service;
 
 import com.example.modszert_backend.config.JwtService;
+import com.example.modszert_backend.customExceptions.UsernameAlreadyExistsException;
 import com.example.modszert_backend.dto.LoginDto;
 import com.example.modszert_backend.dto.RegisterDto;
 import com.example.modszert_backend.entity.Role;
@@ -22,6 +23,10 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public String register(RegisterDto registerDto) {
+        if (userRepository.findByUsername(registerDto.getUsername()).isPresent()) {
+            throw new UsernameAlreadyExistsException("Username already exists");
+        }
+
         var user = User.builder()
                 .username(registerDto.getUsername())
                 .password(passwordEncoder.encode(registerDto.getPassword()))
