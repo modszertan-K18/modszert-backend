@@ -1,5 +1,6 @@
 package com.example.modszert_backend.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +37,12 @@ public class SecurityConfiguration {
                     )
             )
             .authenticationProvider(authenticationProvider)
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            .exceptionHandling(exceptionHandling ->
+                    exceptionHandling.authenticationEntryPoint((request, response, authException) -> {
+                        response.sendError(HttpServletResponse.SC_NOT_FOUND, "Resource not found");
+                    })
+            );
 
         return http.build();
     }
