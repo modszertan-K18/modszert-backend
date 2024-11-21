@@ -84,4 +84,8 @@ public class ProductService {
                 .build();
     }
 
+    public void deleteProduct(int productId) {
+        productRepository.deleteById(productId);
+    }
+
 }

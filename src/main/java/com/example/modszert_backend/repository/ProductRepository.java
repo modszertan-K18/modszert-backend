@@ -16,7 +16,7 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 //
 //    Product updateOne(Product product);
 //
-//    void deleteOne(int productId);
+//    void delete(int productId);
 //
 //    List<Product> findAllByStatus(Product.Status status);
 //
