@@ -31,10 +31,6 @@ public class Product {
     @Column
     private int currentBid;
 
-    @Column
-    private int bidIncrement;
-    private String transactionId;
-
     @Column(nullable = false)
     private OffsetDateTime auctionStartTime;
 
@@ -44,13 +40,11 @@ public class Product {
     @Column(nullable = false)
     private String sellerId;
 
+    @Column
+    private String buyerId;
+
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    @ElementCollection
-    @Column(nullable = false)
-    private List<String> images;
-
 
     public enum Status {
         AVAILABLE, SOLD, EXPIRED

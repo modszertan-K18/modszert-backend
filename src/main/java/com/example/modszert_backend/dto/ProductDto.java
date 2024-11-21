@@ -19,11 +19,9 @@ public class ProductDto {
     private String productDescription;
     private int startingPrice;
     private int currentBid;
-    private int bidIncrement;
-    private String transactionId;
     private OffsetDateTime auctionStartTime;
     private OffsetDateTime auctionEndTime;
     private String sellerId;
-    private List<String> images;
+    private String buyerId;
     private Product.Status status;
 }
