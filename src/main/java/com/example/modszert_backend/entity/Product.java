@@ -1,5 +1,6 @@
 package com.example.modszert_backend.entity;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -28,25 +29,10 @@ public class Product {
     @Column(nullable = false)
     private int startingPrice;
 
+    // TODO delete this and make Bid entity
     @Column
     private int currentBid;
 
     @Column(nullable = false)
-    private OffsetDateTime auctionStartTime;
-
-    @Column(nullable = false)
-    private OffsetDateTime auctionEndTime;
-
-    @Column(nullable = false)
-    private String sellerId;
-
-    @Column
-    private String buyerId;
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
-    public enum Status {
-        AVAILABLE, SOLD, EXPIRED
-    }
+    private LocalDateTime auctionEndTime;
 }

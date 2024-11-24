@@ -12,32 +12,17 @@ import org.springframework.stereotype.Service;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public ProductResponse create(ProductDto productDto) {
+    public Product create(ProductDto productDto) {
         var product = Product.builder()
                 .productName(productDto.getProductName())
                 .productDescription(productDto.getProductDescription())
                 .startingPrice(productDto.getStartingPrice())
-                .currentBid(productDto.getCurrentBid())
-                .auctionStartTime(productDto.getAuctionStartTime())
                 .auctionEndTime(productDto.getAuctionEndTime())
-                .sellerId(productDto.getSellerId())
-                .buyerId(productDto.getBuyerId())
-                .status(productDto.getStatus())
+                .currentBid(productDto.getStartingPrice())
                 .build();
 
         productRepository.save(product);
-        return ProductResponse.builder()
-                .productId(product.getProductId())
-                .productName(product.getProductName())
-                .productDescription(product.getProductDescription())
-                .startingPrice(product.getStartingPrice())
-                .currentBid(product.getCurrentBid())
-                .auctionStartTime(product.getAuctionStartTime())
-                .auctionEndTime(product.getAuctionEndTime())
-                .sellerId(product.getSellerId())
-                .buyerId(product.getBuyerId())
-                .status(product.getStatus())
-                .build();
+        return product;
     }
 
     public ProductResponse findById(int productId) {
@@ -52,11 +37,7 @@ public class ProductService {
                 .productDescription(product.getProductDescription())
                 .startingPrice(product.getStartingPrice())
                 .currentBid(product.getCurrentBid())
-                .auctionStartTime(product.getAuctionStartTime())
                 .auctionEndTime(product.getAuctionEndTime())
-                .sellerId(product.getSellerId())
-                .buyerId(product.getBuyerId())
-                .status(product.getStatus())
                 .build();
     }
 
@@ -76,11 +57,7 @@ public class ProductService {
                 .productDescription(product.getProductDescription())
                 .startingPrice(product.getStartingPrice())
                 .currentBid(product.getCurrentBid())
-                .auctionStartTime(product.getAuctionStartTime())
                 .auctionEndTime(product.getAuctionEndTime())
-                .sellerId(product.getSellerId())
-                .buyerId(product.getBuyerId())
-                .status(product.getStatus())
                 .build();
     }
 
