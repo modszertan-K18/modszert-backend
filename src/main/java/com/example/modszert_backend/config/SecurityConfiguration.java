@@ -26,7 +26,7 @@ public class SecurityConfiguration {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(req ->
-                    req.requestMatchers("/auth/**","/product/**")
+                    req.requestMatchers("/auth/**","/product/**", "/profile/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated()
