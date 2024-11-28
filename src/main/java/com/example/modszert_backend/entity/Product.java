@@ -1,9 +1,7 @@
 package com.example.modszert_backend.entity;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.List;
-
+import java.util.ArrayList;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,10 +27,11 @@ public class Product {
     @Column(nullable = false)
     private int startingPrice;
 
-    // TODO delete this and make Bid entity
-    @Column
-    private int currentBid;
-
     @Column(nullable = false)
-    private LocalDateTime auctionEndTime;
+    private int currentPrice;
+
+    //Products bids
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Bid> bids = new ArrayList<>();
+
 }

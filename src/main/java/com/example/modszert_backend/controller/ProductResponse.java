@@ -16,7 +16,8 @@ public class ProductResponse {
     private String productName;
     private String productDescription;
     private int startingPrice;
-    private int currentBid;
+
+    //bid entity
+    private int currentPrice;
     private LocalDateTime auctionEndTime;
-    private LocalDateTime auctionStartTime;
 }

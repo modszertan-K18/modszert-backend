@@ -23,8 +23,7 @@ public class ProductService {
                 .productName(productDto.getProductName())
                 .productDescription(productDto.getProductDescription())
                 .startingPrice(productDto.getStartingPrice())
-                .auctionEndTime(productDto.getAuctionEndTime())
-                .currentBid(productDto.getStartingPrice())
+                .currentPrice(productDto.getCurrentPrice())
                 .build();
 
         productRepository.save(product);
@@ -42,8 +41,7 @@ public class ProductService {
                 .productName(product.getProductName())
                 .productDescription(product.getProductDescription())
                 .startingPrice(product.getStartingPrice())
-                .currentBid(product.getCurrentBid())
-                .auctionEndTime(product.getAuctionEndTime())
+                .currentPrice(product.getCurrentPrice())
                 .build();
     }
 
@@ -53,7 +51,7 @@ public class ProductService {
                         "Cannot find product with id: " + productId
                 ));
         if (bidIncrement <= 0){ throw new IllegalArgumentException("Bid increment must be greater than 0"); }
-        product.setCurrentBid(product.getCurrentBid() + bidIncrement);
+        product.setCurrentPrice(product.getCurrentPrice() + bidIncrement);
 
         productRepository.save(product);
         return ProductResponse
@@ -62,8 +60,7 @@ public class ProductService {
                 .productName(product.getProductName())
                 .productDescription(product.getProductDescription())
                 .startingPrice(product.getStartingPrice())
-                .currentBid(product.getCurrentBid())
-                .auctionEndTime(product.getAuctionEndTime())
+                .currentPrice(product.getCurrentPrice())
                 .build();
     }
 
