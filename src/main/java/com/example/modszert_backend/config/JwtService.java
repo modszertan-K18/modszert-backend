@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import java.security.Key;
@@ -67,5 +68,26 @@ public class JwtService {
 
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
+    }
+
+    public String extractTokenFromRequest(HttpServletRequest request) {
+        String cookieHeader = request.getHeader("Cookie");
+        if (cookieHeader != null) {
+            for (String cookie : cookieHeader.split(";")) {
+                if (cookie.trim().startsWith("access_token=")) {
+                    return cookie.split("=")[1].trim();
+                }
+            }
+        }
+        return null;
+    }
+
+    public String extractUsernameFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getSignInKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getSubject();
     }
 }
