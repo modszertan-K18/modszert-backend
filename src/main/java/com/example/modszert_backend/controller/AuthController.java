@@ -4,6 +4,7 @@ import com.example.modszert_backend.customExceptions.UsernameAlreadyExistsExcept
 import com.example.modszert_backend.dto.RegisterDto;
 import com.example.modszert_backend.dto.LoginDto;
 import com.example.modszert_backend.service.AuthService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -92,5 +93,23 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(message);
         }
 
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<HashMap<String, String>> logout(HttpServletResponse response) {
+        ResponseCookie cookie = ResponseCookie.from("access_token", "")
+                .httpOnly(true)
+                .path("/")
+                .sameSite("Strict")
+                .maxAge(1)
+                .build();
+
+        HashMap<String, String> successMessage = new HashMap<>();
+        successMessage.put("message", "logout success, clearing cookie");
+
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.SET_COOKIE, cookie.toString())
+                .body(successMessage);
     }
 }
