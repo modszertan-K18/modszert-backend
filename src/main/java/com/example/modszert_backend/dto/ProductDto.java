@@ -12,8 +12,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDto {
+
+    private int productOwnerId;
     private String productName;
     private String productDescription;
     private int startingPrice;
+    private int currentPrice;
     private LocalDateTime auctionEndTime;
 }

@@ -8,18 +8,6 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Integer> {
 
-    //Optional<List<Product>> findAll();
-
     Optional<Product> findByProductId(int productId);
-
-    //Optional<Product> createOne(Product product);
-//
-//    Product updateOne(Product product);
-//
-//    void delete(int productId);
-//
-//    List<Product> findAllByStatus(Product.Status status);
-//
-//    List<Product> findByCurrentBidBetween(int minPrice, int maxPrice);
 
 }
