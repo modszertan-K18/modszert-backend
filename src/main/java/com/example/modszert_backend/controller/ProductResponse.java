@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductResponse {
+    private int productOwnerId;
     private int productId;
     private String productName;
     private String productDescription;
     private int startingPrice;
 
-    //bid entity
     private int currentPrice;
     private LocalDateTime auctionEndTime;
 }

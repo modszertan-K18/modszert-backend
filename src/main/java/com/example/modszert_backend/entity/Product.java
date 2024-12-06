@@ -1,5 +1,6 @@
 package com.example.modszert_backend.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 import jakarta.persistence.*;
@@ -18,11 +19,18 @@ public class Product {
     @GeneratedValue
     private Integer productId;
 
+    @Column(name = "product_owner_id",nullable = false)
+    private Integer productOwnerId;
+
+
     @Column(nullable = false)
     private String productName;
 
     @Column(length = 600)
     private String productDescription;
+
+    @Column(nullable = false)
+    private LocalDateTime auctionEndTime;
 
     @Column(nullable = false)
     private int startingPrice;

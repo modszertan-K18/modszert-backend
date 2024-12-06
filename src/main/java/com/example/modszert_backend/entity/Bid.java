@@ -19,10 +19,10 @@ public class Bid {
     private int id;
 
     @Column(nullable = false)
-    private int currentBid;
+    private LocalDateTime bidDate;
 
     @Column(nullable = false)
-    private LocalDateTime auctionEndTime;
+    private int currentBid;
 
     @ManyToOne
     @JoinColumn(name="user_id",nullable = false)
