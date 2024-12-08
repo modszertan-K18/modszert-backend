@@ -55,6 +55,7 @@ public class ProductService {
                 .productDescription(product.getProductDescription())
                 .startingPrice(product.getStartingPrice())
                 .currentPrice(product.getCurrentPrice())
+                .auctionEndTime(product.getAuctionEndTime())
                 .build();
     }
 
